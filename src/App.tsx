@@ -1,1 +1,3 @@
-export const App = () => <h1>Pixel</h1>;
+import { Router } from "./routing/Router";
+
+export const App = () => <Router />;
