@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/AppContext";
 import { FormField } from "./FormField";
 import { Button, Form } from "./styled";
-import { Path } from "../routing/Router";
 
 interface Props {
-  type: "Register" | "Login";
-  authMethod: (email: string, password: string) => Promise<void>;
+  type: "name" | "email";
+  changeMethod: (nameOrEmail: string) => Promise<void>;
 }
 
 const getFormFieldValue = (target: EventTarget, name: string): string => {
@@ -19,18 +18,16 @@ const getFormFieldValue = (target: EventTarget, name: string): string => {
   throw new Error("Not an HTMLInputElement instance");
 };
 
-export const AuthForm = ({ type, authMethod }: Props) => {
-  const navigate = useNavigate();
+export const ChangeForm = ({ type, changeMethod }: Props) => {
+  const user = useUser();
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const email = getFormFieldValue(event.target, "email");
-    const password = getFormFieldValue(event.target, "password");
+    const nameOrEmail = getFormFieldValue(event.target, type);
 
     try {
-      await authMethod(email, password);
-      navigate(Path.Dashboard);
+      await changeMethod(nameOrEmail);
     } catch (error) {
       console.error(error);
     } finally {
@@ -41,17 +38,13 @@ export const AuthForm = ({ type, authMethod }: Props) => {
     <article>
       <Form onSubmit={onSubmit}>
         <header>
-          <h3>{type}</h3>
+          <h3 className="capitalize">Change {type}</h3>
         </header>
 
-        <FormField type="email" name="email" placeholder="johndoe@mail.com" />
-        <FormField
-          type="password"
-          name="password"
-          placeholder="secret_password_42"
-        />
+        <FormField type={type} name={type} defaultValue={user[type]} />
+
         <Button style={{ width: "150px" }} type="submit">
-          {type}
+          Update
         </Button>
       </Form>
     </article>

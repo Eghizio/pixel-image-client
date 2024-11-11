@@ -15,6 +15,8 @@ export type AuthContextValue = {
   register: (email: string, password: string) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  changeUserName: (name: string) => Promise<void>;
+  changeUserEmail: (email: string) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -64,9 +66,25 @@ export const AuthContextProvider = ({ children }: WithChildren) => {
     setUser(null);
   }, [setUser]);
 
+  const changeUserName = useCallback(
+    async (name: string) => {
+      const user = await auth.changeUsersName(name);
+      setUser(user);
+    },
+    [setUser]
+  );
+
+  const changeUserEmail = useCallback(
+    async (email: string) => {
+      const user = await auth.changeUsersEmail(email);
+      setUser(user);
+    },
+    [setUser]
+  );
+
   const value = useMemo(
-    () => ({ user, register, login, logout }),
-    [user, register, login, logout]
+    () => ({ user, register, login, logout, changeUserName, changeUserEmail }),
+    [user, register, login, logout, changeUserName, changeUserEmail]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
