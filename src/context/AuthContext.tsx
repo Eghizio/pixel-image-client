@@ -7,7 +7,8 @@ import {
   useMemo,
   useState,
 } from "react";
-import { AuthService, User } from "../api/AuthService";
+import { AuthService } from "../api/AuthService";
+import { User } from "../models/User";
 
 export type AuthContextValue = {
   user: User | null;

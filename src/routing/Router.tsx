@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { PrivateRoute } from "./PrivateRoute";
 import { HomePage } from "../pages/Home";
 import { AuthPage } from "../pages/Auth";
-import { ProfilePage } from "../pages/Profile";
-import { DashboardPage } from "../pages/Dashboard";
 import { NotFoundPage } from "../pages/NotFound";
+import { ProfilePage } from "../pages/app/Profile";
+import { DashboardPage } from "../pages/app/Dashboard";
 
 export enum Path {
   Home = "/",
@@ -30,11 +31,19 @@ const router = createBrowserRouter(
       children: [
         {
           path: Path.Profile,
-          element: <ProfilePage />,
+          element: (
+            <PrivateRoute redirectTo={Path.AuthLogin}>
+              {(user) => <ProfilePage user={user} />}
+            </PrivateRoute>
+          ),
         },
         {
           path: Path.Dashboard,
-          element: <DashboardPage />,
+          element: (
+            <PrivateRoute redirectTo={Path.AuthLogin}>
+              {(user) => <DashboardPage user={user} />}
+            </PrivateRoute>
+          ),
         },
       ],
     },

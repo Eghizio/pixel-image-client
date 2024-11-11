@@ -1,12 +1,5 @@
 import { RestClient } from "./RestClient";
-
-// Todo: Move to models.
-export type User = {
-  readonly id: string;
-  readonly email: string;
-  readonly name: string;
-  readonly createdAt: Date;
-};
+import { User } from "../models/User";
 
 const isDevelopment = location.origin === "http://localhost:5173";
 const BASE_URL = isDevelopment
