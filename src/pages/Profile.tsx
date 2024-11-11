@@ -1,12 +1,14 @@
 import { Layout } from "../components/Layout";
 import { useAuth } from "../context/AuthContext";
 
-export const DashboardPage = () => {
+interface Props {} // get user from ProtectedRoute.
+
+export const ProfilePage = ({}: Props) => {
   const { user } = useAuth();
 
   return (
     <Layout>
-      <h2>Dashboard Page</h2>
+      <h2>Profile Page</h2>
       {user ? <p>Hello, {user.name}!</p> : null}
     </Layout>
   );
