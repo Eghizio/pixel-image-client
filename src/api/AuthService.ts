@@ -8,7 +8,7 @@ export type User = {
   readonly createdAt: Date;
 };
 
-const isDevelopment = true;
+const isDevelopment = location.origin === "http://localhost:5173";
 const BASE_URL = isDevelopment
   ? "http://localhost:4000"
   : "https://frog02-40476.wykr.es";

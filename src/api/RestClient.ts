@@ -60,11 +60,15 @@ export class RestClient {
       );
     }
 
-    if (response.status === 200 || response.status === 201) {
-      const data = await response.json();
+    const contentType = response.headers.get("Content-Type");
 
+    if (contentType?.includes("application/json")) {
+      const data = await response.json();
       return data;
     }
+
+    const data = await response.text();
+    return data;
   }
 
   private createOptions(method: HttpMethod, body: any, headers?: Headers) {
