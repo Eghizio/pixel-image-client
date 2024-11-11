@@ -1,11 +1,9 @@
 import { Layout } from "../../components/Layout";
-import { User } from "../../models/User";
+import { useUser } from "../../context/AppContext";
 
-interface Props {
-  user: User;
-}
+export const DashboardPage = () => {
+  const user = useUser();
 
-export const DashboardPage = ({ user }: Props) => {
   return (
     <Layout>
       <h2>Dashboard Page</h2>

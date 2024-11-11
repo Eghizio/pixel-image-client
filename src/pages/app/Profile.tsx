@@ -1,11 +1,9 @@
 import { Layout } from "../../components/Layout";
-import { User } from "../../models/User";
+import { useUser } from "../../context/AppContext";
 
-interface Props {
-  user: User;
-}
+export const ProfilePage = () => {
+  const user = useUser();
 
-export const ProfilePage = ({ user }: Props) => {
   return (
     <Layout>
       <h2>Profile Page</h2>

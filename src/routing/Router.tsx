@@ -33,7 +33,7 @@ const router = createBrowserRouter(
           path: Path.Profile,
           element: (
             <PrivateRoute redirectTo={Path.AuthLogin}>
-              {(user) => <ProfilePage user={user} />}
+              <ProfilePage />
             </PrivateRoute>
           ),
         },
@@ -41,7 +41,7 @@ const router = createBrowserRouter(
           path: Path.Dashboard,
           element: (
             <PrivateRoute redirectTo={Path.AuthLogin}>
-              {(user) => <DashboardPage user={user} />}
+              <DashboardPage />
             </PrivateRoute>
           ),
         },

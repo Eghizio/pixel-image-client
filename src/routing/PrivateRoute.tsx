@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ReactNode } from "react";
-import { User } from "../models/User";
+import { AppContextProvider } from "../context/AppContext";
 
 interface Props {
   redirectTo: string;
-  children?: (user: User) => ReactNode;
+  children?: ReactNode;
 }
 
 export const PrivateRoute = ({ redirectTo, children }: Props) => {
@@ -15,5 +15,9 @@ export const PrivateRoute = ({ redirectTo, children }: Props) => {
 
   if (!isAllowed) return <Navigate to={redirectTo} replace />;
 
-  return children ? children(user) : <Outlet />;
+  return (
+    <AppContextProvider user={user}>
+      {children ? children : <Outlet />}
+    </AppContextProvider>
+  );
 };
