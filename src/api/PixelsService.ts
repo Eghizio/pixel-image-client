@@ -15,6 +15,7 @@ export class PixelsService {
     );
   }
 
+  // Todo: Add validation.
   async getAllPixels(): Promise<Pixel[]> {
     try {
       const pixels = await this.client.get(`/`);

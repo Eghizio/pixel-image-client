@@ -14,6 +14,7 @@ export class AuthService {
     );
   }
 
+  // Todo: Add validation.
   async register(email: string, password: string): Promise<User> {
     try {
       const { user } = await this.client.post(`/`, { email, password });

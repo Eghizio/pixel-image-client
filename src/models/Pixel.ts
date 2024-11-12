@@ -1,6 +1,6 @@
 export type Pixel = {
   id: string;
-  created_at: string;
+  createdAt: string;
   name: string;
   visits: number;
 

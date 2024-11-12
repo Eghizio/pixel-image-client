@@ -44,3 +44,5 @@ export const Column = classed.div("flex flex-col gap-2", {
 });
 
 export const Link = classed.span("text-blue-900 underline");
+
+export const Section = classed.section("px-2 py-4 bg-slate-100");
