@@ -11,12 +11,12 @@ export const Header = ({}: Props) => {
 
   const onLogout = async () => {
     await logout();
-    navigate(Path.AuthLogin);
+    navigate(Path.AuthLogin, { replace: true });
   };
 
   return (
     <StyledHeader>
-      <NavLink to={Path.Home}>
+      <NavLink to={Path.Home} replace>
         <Logo>
           <span>✨</span>
           <span className="hidden sm:block">Pixel</span>
@@ -26,19 +26,19 @@ export const Header = ({}: Props) => {
       <Navigation>
         {user === null ? (
           <>
-            <NavLink to={Path.AuthRegister}>
+            <NavLink to={Path.AuthRegister} replace>
               <Button>Register</Button>
             </NavLink>
-            <NavLink to={Path.AuthLogin}>
+            <NavLink to={Path.AuthLogin} replace>
               <Button>Login</Button>
             </NavLink>
           </>
         ) : (
           <>
-            <NavLink to={Path.Dashboard}>
+            <NavLink to={Path.Dashboard} replace>
               <Button>Dashboard</Button>
             </NavLink>
-            <NavLink to={Path.Profile}>
+            <NavLink to={Path.Profile} replace>
               <Button>Profile</Button>
             </NavLink>
             <Button variant="danger" onClick={onLogout}>

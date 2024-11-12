@@ -17,7 +17,7 @@ export const AuthPage = () => {
   return (
     <Layout>
       {user !== null ? (
-        <Navigate to={Path.Dashboard} />
+        <Navigate to={Path.Dashboard} replace />
       ) : (
         <Column align="center">
           <AuthForm type={formType} authMethod={authMethod} />
@@ -26,14 +26,18 @@ export const AuthPage = () => {
             <p>
               Already have an account?{" "}
               <Link>
-                <NavLink to={Path.AuthLogin}>Login</NavLink>
+                <NavLink to={Path.AuthLogin} replace>
+                  Login
+                </NavLink>
               </Link>
             </p>
           ) : (
             <p>
               Don't have an account?{" "}
               <Link>
-                <NavLink to={Path.AuthRegister}>Register</NavLink>
+                <NavLink to={Path.AuthRegister} replace>
+                  Register
+                </NavLink>
               </Link>
             </p>
           )}

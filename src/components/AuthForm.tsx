@@ -30,7 +30,7 @@ export const AuthForm = ({ type, authMethod }: Props) => {
 
     try {
       await authMethod(email, password);
-      navigate(Path.Dashboard);
+      navigate(Path.Dashboard, { replace: true });
     } catch (error) {
       console.error(error);
     }

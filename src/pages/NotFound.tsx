@@ -9,7 +9,9 @@ export const NotFoundPage = () => {
       <Column align="center">
         <h2 className="p-4 font-semibold">Page not found</h2>
         <Link>
-          <NavLink to={Path.Home}>Go to home page</NavLink>
+          <NavLink to={Path.Home} replace>
+            Go to home page
+          </NavLink>
         </Link>
       </Column>
     </Layout>
