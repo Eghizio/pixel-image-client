@@ -6,6 +6,7 @@ import { SimpleForm } from "../../components/SimpleForm";
 import { Column, Section } from "../../components/styled";
 import { usePixels, useUser } from "../../context/AppContext";
 
+// Todo: Clean up.
 const EXAMPLE_PIXEL_ID = "EXAMPLE-PIXEL-ID-REPLACE-WITH-YOURS";
 
 const isDevelopment = location.origin === "http://localhost:5173";
