@@ -1,4 +1,5 @@
 import { Layout } from "../../components/Layout";
+import { PixelsList } from "../../components/PixelsList";
 import { SimpleForm } from "../../components/SimpleForm";
 import { Column } from "../../components/styled";
 import { usePixels, useUser } from "../../context/AppContext";
@@ -31,16 +32,7 @@ export const DashboardPage = () => {
           changeMethod={deletePixel}
         />
 
-        <div>
-          <h3>Pixels list:</h3>
-          <ul>
-            {pixels.map((pixel) => (
-              <li key={pixel.id}>
-                <pre>{JSON.stringify(pixel, null, 2)}</pre>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <PixelsList pixels={pixels} />
       </Column>
     </Layout>
   );
