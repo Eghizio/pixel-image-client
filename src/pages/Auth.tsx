@@ -17,7 +17,7 @@ export const AuthPage = () => {
   return (
     <Layout>
       {user !== null ? (
-        <Navigate to={Path.Profile} />
+        <Navigate to={Path.Dashboard} />
       ) : (
         <Column align="center">
           <AuthForm type={formType} authMethod={authMethod} />

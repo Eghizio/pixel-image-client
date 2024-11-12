@@ -1,9 +1,13 @@
-import { useUser } from "../context/AppContext";
+import { HTMLInputTypeAttribute } from "react";
 import { FormField } from "./FormField";
 import { Button, Form } from "./styled";
 
 interface Props {
-  type: "name" | "email";
+  formLabel: string;
+  buttonLabel: string;
+  name: string;
+  type?: HTMLInputTypeAttribute;
+  defaultValue?: string;
   changeMethod: (nameOrEmail: string) => Promise<void>;
 }
 
@@ -18,19 +22,23 @@ const getFormFieldValue = (target: EventTarget, name: string): string => {
   throw new Error("Not an HTMLInputElement instance");
 };
 
-export const ChangeForm = ({ type, changeMethod }: Props) => {
-  const user = useUser();
-
+export const SimpleForm = ({
+  formLabel,
+  buttonLabel,
+  name,
+  type = "text",
+  defaultValue = "",
+  changeMethod,
+}: Props) => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const nameOrEmail = getFormFieldValue(event.target, type);
-
+    const value = getFormFieldValue(event.target, name);
+    console.log({ value });
     try {
-      await changeMethod(nameOrEmail);
+      await changeMethod(value);
     } catch (error) {
       console.error(error);
-    } finally {
     }
   };
 
@@ -38,13 +46,13 @@ export const ChangeForm = ({ type, changeMethod }: Props) => {
     <article>
       <Form onSubmit={onSubmit}>
         <header>
-          <h3 className="capitalize">Change {type}</h3>
+          <h3 className="capitalize">{formLabel}</h3>
         </header>
 
-        <FormField type={type} name={type} defaultValue={user[type]} />
+        <FormField type={type} name={name} defaultValue={defaultValue} />
 
         <Button style={{ width: "150px" }} type="submit">
-          Update
+          {buttonLabel}
         </Button>
       </Form>
     </article>

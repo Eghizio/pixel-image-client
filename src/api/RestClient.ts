@@ -8,6 +8,11 @@ type Options = {
   body?: Body;
 };
 
+const isDevelopment = location.origin === "http://localhost:5173";
+const BASE_URL = isDevelopment
+  ? "http://localhost:4000"
+  : "https://frog02-40476.wykr.es";
+
 export class RestClient {
   readonly baseURL: string;
   defaultHeaders: {};
@@ -18,7 +23,7 @@ export class RestClient {
     defaultHeaders: Headers = {},
     defaultOptions: {} = {}
   ) {
-    this.baseURL = baseURL;
+    this.baseURL = `${BASE_URL}${baseURL}`;
     this.defaultHeaders = defaultHeaders;
     this.defaultOptions = defaultOptions;
   }

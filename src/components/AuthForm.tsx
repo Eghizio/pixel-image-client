@@ -33,7 +33,6 @@ export const AuthForm = ({ type, authMethod }: Props) => {
       navigate(Path.Dashboard);
     } catch (error) {
       console.error(error);
-    } finally {
     }
   };
 

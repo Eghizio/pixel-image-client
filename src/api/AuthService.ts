@@ -1,17 +1,12 @@
 import { RestClient } from "./RestClient";
 import { User } from "../models/User";
 
-const isDevelopment = location.origin === "http://localhost:5173";
-const BASE_URL = isDevelopment
-  ? "http://localhost:4000"
-  : "https://frog02-40476.wykr.es";
-
 export class AuthService {
   private readonly client: RestClient;
 
   constructor() {
     this.client = new RestClient(
-      `${BASE_URL}/api/users`,
+      `/api/users`,
       {
         "Content-Type": "application/json",
       },
@@ -25,7 +20,7 @@ export class AuthService {
       return user;
     } catch (error) {
       console.error(error);
-      throw error; // figure out handling
+      throw error; // Todo: figure out handling
     }
   }
 

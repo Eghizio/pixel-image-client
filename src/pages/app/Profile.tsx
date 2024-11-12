@@ -1,4 +1,4 @@
-import { ChangeForm } from "../../components/ChangeForm";
+import { SimpleForm } from "../../components/SimpleForm";
 import { Layout } from "../../components/Layout";
 import { Column } from "../../components/styled";
 import { useUser } from "../../context/AppContext";
@@ -14,9 +14,23 @@ export const ProfilePage = () => {
         <h2>Profile Page</h2>
         <p>Hello, {user.name}!</p>
 
-        <ChangeForm type="name" changeMethod={changeUserName} />
+        <SimpleForm
+          formLabel="Change Name"
+          buttonLabel="Update"
+          type="text"
+          name="name"
+          defaultValue={user["name"]}
+          changeMethod={changeUserName}
+        />
 
-        <ChangeForm type="email" changeMethod={changeUserEmail} />
+        <SimpleForm
+          formLabel="Change Email"
+          buttonLabel="Update"
+          type="email"
+          name="email"
+          defaultValue={user["email"]}
+          changeMethod={changeUserEmail}
+        />
       </Column>
     </Layout>
   );
